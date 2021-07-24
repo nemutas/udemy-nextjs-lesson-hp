@@ -1,6 +1,11 @@
 import Link from 'next/link';
+import { PostType } from '../lib/types';
 
-export const Post = ({ post }) => {
+type PropsType = {
+	post: PostType;
+};
+
+export function Post({ post }: PropsType) {
 	return (
 		<div>
 			<span>{post.id}</span>
@@ -12,4 +17,4 @@ export const Post = ({ post }) => {
 			</Link>
 		</div>
 	);
-};
+}

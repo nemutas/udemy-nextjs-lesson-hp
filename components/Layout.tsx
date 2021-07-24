@@ -1,8 +1,13 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
-export const Layout = ({ children, title = 'HP by Next.js' }) => {
+type PropsType = {
+	children: React.ReactNode;
+	title?: string;
+};
+
+export function Layout({ children, title = 'HP by Next.js' }: PropsType) {
 	return (
 		<div className="flex justify-center items-center flex-col min-h-screen text-gray-600 text-sm font-mono">
 			<Head>
@@ -43,4 +48,4 @@ export const Layout = ({ children, title = 'HP by Next.js' }) => {
 			</footer>
 		</div>
 	);
-};
+}
