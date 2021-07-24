@@ -1,8 +1,14 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { Layout } from '../../components/Layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
+import { PostType } from '../../lib/types';
 
-const Post = ({ post }) => {
+type PropsType = {
+	post: PostType;
+};
+
+export default function Post({ post }: PropsType) {
 	if (!post) {
 		return <div>Loadiong...</div>;
 	}
@@ -32,11 +38,9 @@ const Post = ({ post }) => {
 			</Link>
 		</Layout>
 	);
-};
+}
 
-export default Post;
-
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
 	const paths = await getAllPostIds();
 
 	return {
@@ -45,8 +49,8 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps = async ({ params }) => {
-	const post = await getPostData(params.id);
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+	const post = await getPostData(params.id as string);
 
 	return {
 		props: {
